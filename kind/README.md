@@ -1,4 +1,5 @@
 # kind Resources
 
 ## Table of Contents
-* [Kind-ly running Contour](./contour/)
+* [Contour: Kind-ly running Contour](./contour/)
+* [MetalLB: Using MetalLb with Kind](./metallb/)
