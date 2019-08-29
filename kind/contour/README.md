@@ -9,7 +9,7 @@ I used kind v0.6.0-alpha and Contour 0.15.0 for this tutorial.
 
 First off, let's create the cluster:
 ```
-$ kind create cluster --config ./contour/kind.config.yaml
+$ kind create cluster --config ./kind.config.yaml
 ```
 
 The kind config file will create 1 worker node and we are mapping ports 80 and
