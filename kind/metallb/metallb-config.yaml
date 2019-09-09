@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      # Our Docker's bridge network had the subnet listed as 172.17.0.0/16.
+      # This means that this network can assign IP addresses in the range of
+      # 172.17.0.0 - 172.17.255.255.
+      addresses:
+      - 172.17.255.1-172.17.255.250
