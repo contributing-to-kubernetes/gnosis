@@ -1,0 +1,9 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+  - image: alejandrox1/cool-app
+deploy:
+  kubectl:
+    manifests:
+    - app.yaml
