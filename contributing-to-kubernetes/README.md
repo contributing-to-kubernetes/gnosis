@@ -1,6 +1,6 @@
 # Contributing to Kubernetes: A roadmap
 
-Hello :world:!
+Hello :earth_africa:!
 
 Welcome to my roadmap of Kubernetes.
 This is purely acollection of useful links and some explanations of the
