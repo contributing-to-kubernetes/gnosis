@@ -2,3 +2,4 @@
 
 ## Table of Contents
 * [Building an informer](./informer/)
+* [Using the dynamic client](./dynamic-client/)
