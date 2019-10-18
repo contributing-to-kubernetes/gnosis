@@ -89,8 +89,8 @@ Within the `spec` field, however you see some new fields:
 * `replicas`: specifies the number of replicas of a given pod that you want to
   run.
 * `selector.matchLabels`: like many objects in Kubernetes, ReplicaSets are
-  managed by a Kubernetes component called "the replication controller". This
-  replication controller is an application, and this application finds pods
+  managed by a Kubernetes component (a "controller"). This
+  controller is an application, and this application finds pods
   through "labels" (labels are attached to Kubernetes resources, they are
   essentially more metadata). So in the `selector.matchLabels` field you tell
   Kubernetes how the Pods for this ReplicaSet will be labeled.
