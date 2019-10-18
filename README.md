@@ -5,6 +5,10 @@ stories, and anything that may be remotely useful to another operator or
 developer who works with or wants to learn to work with Kubernetes.
 
 ## Table of Contents
+* [kubernetes 101](./kubernetes-101) - a collection of howtos, tips, and
+  tutorials for
+  * [developers](./kubernetes-101/developers)
+  * [operators](./kubernetes-101/operators)
 * [Contributing to Kubernetes](./contributing-to-kubernetes/) - a collection of
   common questions about the Kubernetes community. This is intended to be a
   roadmap for the existing documentation.
