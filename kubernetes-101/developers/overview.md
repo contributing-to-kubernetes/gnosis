@@ -94,8 +94,8 @@ Within the `spec` field, however you see some new fields:
   through "labels" (labels are attached to Kubernetes resources, they are
   essentially more metadata). So in the `selector.matchLabels` field you tell
   Kubernetes how the Pods for this ReplicaSet will be labeled.
-* `template`: this is where you specify the pod template that the replicaset is
-  to use to create pods!!
+* `template`: this is where you specify the pod template (or pod spec!!) that the replicaset is
+  to use to create pods!
 
 Let's now create a replicaset that runs 2 replicas of the pod in the previous
 section.
