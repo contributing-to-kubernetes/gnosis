@@ -17,18 +17,20 @@ func Split(s, sep string) []string
 > If `sep` is empty, Split splits after each UTF-8 sequence. If both `s` and `sep` are empty, Split returns an empty slice.
 > It is equivalent to SplitN with a count of -1.
 
-You could use this function as follows
+You could use this function as follows:
 
 ```go
 fmt.Println(strings.Split("a,b,c", ","))
 ```
 
-In which case it would output a slice with the elements `["a" "b" "c"]`.
+In which case it would output a slice, with the elements `["a" "b" "c"]`, omitting the `","` since this is what we told `strings.Split()` to split on.
 
 In the PR description, it is mentioned that if the `s` input to `strings.Split`
 was an empty string (`""`), then the length of the returned slice would be one
 and whose only element would be an empty string.
-This would cause an issue with the following check
+
+This would cause an issue with a check, within the `complete()` function, located in [/cmd/kube-apiserver/app/server.go][/cmd/kube-apiserver/app/server.go]:
+
 
 ```go
 if len(s.GenericServerRunOptions.ExternalHost) == 0 {
@@ -44,18 +46,16 @@ if len(s.GenericServerRunOptions.ExternalHost) == 0 {
 	klog.Infof("external host was not specified, using %v", s.GenericServerRunOptions.ExternalHost)
 }
 ```
-In the `complete()` function within
-[/cmd/kube-apiserver/app/server.go][/cmd/kube-apiserver/app/server.go].
 
 To go further we need some more details :smile:
 
 ## ExternalHost
 
 ### Options
-To better understand how the above check works and what it does we need to
+To better understand how the above check works and what it does, we need to
 digress a bit.
 
-So the above check, the `if len(s.GenericServerRunOptions.ExternalHost) == 0`
+So, in the above check, the `if len(s.GenericServerRunOptions.ExternalHost) == 0`
 is in a function called `complete()` within
 [/cmd/kube-apiserver/app/server.go][/cmd/kube-apiserver/app/server.go].
 This function has the following signature:
@@ -89,7 +89,7 @@ Instead, you will have to search for it within the `staging` directory.
 The above package can be found here
 [/staging/src/k8s.io/apiserver/pkg/server/options][/staging/src/k8s.io/apiserver/pkg/server/options].
 
-One of the fields from the `ServerRunOptions` struct is the following
+Here are one of the fields from the `ServerRunOptions` struct:
 
 ```go
 SecureServing           *genericoptions.SecureServingOptionsWithLoopback
@@ -104,8 +104,8 @@ type SecureServingOptionsWithLoopback struct {
 }
 ```
 
-This means that it is an "instance" of the `SecureServingOptions` struct which
-is defined in
+This means that it is an "instance" of the `SecureServingOptions` struct, which
+is further defined in
 [/staging/src/k8s.io/apiserver/pkg/server/options/serving.go][/staging/src/k8s.io/apiserver/pkg/server/options/serving.go]
 
 ### MaybeDefaultWithSelfSignedCerts
