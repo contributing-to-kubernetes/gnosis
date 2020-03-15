@@ -127,3 +127,46 @@ All the flags we used mingle with our Kubernetes e2e test binary to run some Go
 code.
 For example, the test we ran can be (currently) found here:
 https://github.com/kubernetes/kubernetes/blob/master/test/e2e/common/downward_api.go.
+
+
+## Running Your Own Tests :smile:
+
+Time for us to understand Kubernetes e2e tests better.
+
+If you made it to this part of the readme, you should have an `e2e.test`
+binary.
+This binary is made up of tests, check this part of the ginkgo docs for the
+tl;dr https://onsi.github.io/ginkgo/#precompiling-tests.
+
+The Kubernetes `e2e.test` binary is compiled from this place in k/k (Kubernetes
+repo) https://github.com/kubernetes/kubernetes/tree/master/test/e2e.
+Just for you, we added a smaller version of it here for you to play around in
+[`example-e2e-test`](./example-e2e-test/) (promise to add some non-trivial e2e
+tests in the future).
+
+You can run it in exactly the same manner as the Kubernetes `e2e.test` binary.
+
+First off, you will need to build a test binary.
+You need to first of all install ginkgo following the official docs here
+http://onsi.github.io/ginkgo/.
+Once you have ginkgo installed in your machine you can go into
+[`example-e2e-test`](./example-e2e-test/)
+and run
+
+```
+ginkgo build
+```
+
+This should result in your own test binary `example-e2e-test.test`.
+
+If you want to see the available command-line flags run
+
+```
+ginkgo example-e2e-test.test -- --help
+```
+
+To run it, then try
+
+```
+ginkgo example-e2e-test.test -- --test-flag cool-framework --ns ci
+```
