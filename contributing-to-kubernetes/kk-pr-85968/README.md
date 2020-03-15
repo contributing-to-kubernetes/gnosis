@@ -27,6 +27,25 @@ As it turns out, a command-line flag of the Kubernetes API server, `--service-cl
 ran into an issue with the expected outcome of `strings.Split()`.
 The rest of this write up will walk us through the problem in more depth.
 
+### Toy Model
+
+If you want to mess around with the logic or to more closely follow the code we
+added a sample version of the kube-apiserver here in
+[`example-cobra`](./example-cobra).
+
+This toy model of the kube apiserver has only the core logic dealing with the
+issue at hand but it mirrors the code organization and flow to what the authors
+believe to be the key details.
+
+You can compile it with a simple `go build`.
+Then run it as any other executable:
+
+```
+go build && ./example-cobra --help
+```
+
+Checkout the `Misc flags` :smile:.
+
 ## A Tour of the Kube API Server
 
 Kubernetes has various components, the API server, the kubelet, etc.
