@@ -1,5 +1,16 @@
 # Running Kubernetes E2E Tests
 
+Before we get started, I have to give credit to the wonderful people that have
+worked on kind and on kind-based CI in Kubernetes since this README is based on
+the things I learned while going though
+https://github.com/kubernetes-sigs/kind/blob/master/hack/ci/e2e-k8s.sh
+
+So @BenTheElder and @liggitt (authors of `e2e-k8s.sh`), thank you!
+And thank you to all the contributors to Kind and Kubernetes - knowledge
+doesn't just materialize out of a vacuum but advances step by step until it
+reaches us and pushes us a bit forward.
+Every contribution to the community, no matter how small has helped us get to
+where we are today :evergreen_tree:.
 
 ## Overview
 
