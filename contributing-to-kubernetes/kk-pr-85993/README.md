@@ -253,7 +253,7 @@ klog.V(4).Infof("CNI network config set to %v", json)
 plugin.netConfig, err = libcni.ConfFromBytes([]byte(json))
 ```
 
-The `getRangesConfig` method went from this:
+That `getRangesConfig` method went from this:
 ```go
 // given a n cidrs assigned to nodes,
 // create bridge configuration that conforms to them
@@ -295,4 +295,14 @@ func (plugin *kubenetNetworkPlugin) getRangesConfig() string {
 	// each range contains a subnet. gateway will be fetched from cni result
 	return strings.Join(ranges[:], ",")
 }
+```
+
+## Conclusion
+
+We've just learned a bit of how kubenet works, how it has fetched the gateway in the past and how it fetches it at the time of the PR. Bugs can be very interesting and lead to interesting solutions and/or insight. The hope is, that you walk away from this PR breakdown with a little more knowledge of the inner-workings of Kubernetes, Go and networking. As a community, it is important to keep on learning and sharing the knowledge we gain from our experiences.
+
+```
+"We are only as strong as we are united, as weak as we are divided."
+
+― J.K. Rowling, Harry Potter and the Goblet of Fire
 ```
