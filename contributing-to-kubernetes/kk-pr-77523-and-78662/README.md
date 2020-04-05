@@ -1,4 +1,4 @@
-# Re-route local traffic going to the LB #77523
+# Re-route local traffic going to the LB #77523 _and_ #78662
 
 ## Description
 
@@ -56,7 +56,10 @@ The first line:
 args = append(args[:0], "-A", string(svcXlbChain))
 ```
 
-appends to a list of args .....
+In this line, we are inserting the `service chain` for this rule. `svcXlbChain` is a reference to an earlier defined variable. It is the name of the service's LB chain derived from the info for the service:
+```go
+svcXlbChain := svcInfo.serviceLBChainName
+```
 
 The next line, writes a line, a.k.a. rule, to the `iptables proxier`. In the context of this code, the `iptables proxier` is represented by a struct, named `Proxier`:
 
