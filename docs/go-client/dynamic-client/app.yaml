@@ -1,0 +1,53 @@
+---
+# ServiceAccount for our app.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cool-kubernetes
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: cool-kubernetes
+  namespace: default
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+# Bind "cool-kubernetes" Role to "cool-kubernetes" ServiceAccount.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cool-kubernetes
+  namespace: default # This only grants permissions within the "default" namespace.
+subjects:
+- kind: ServiceAccount
+  name: cool-kubernetes 
+  apiGroup: ""
+roleRef:
+  kind: Role #this must be Role or ClusterRole
+  name: cool-kubernetes # this must match the name of the Role or ClusterRole you wish to bind to.
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cool-kubernetes
+  labels:
+    app: cool-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cool-kubernetes
+  template:
+    metadata:
+      labels:
+        app: cool-kubernetes
+    spec:
+      serviceAccount: cool-kubernetes
+      containers:
+      - name: cool-kubernetes
+        image: alejandrox1/cool-kubernetes:v1
+        imagePullPolicy: Always
