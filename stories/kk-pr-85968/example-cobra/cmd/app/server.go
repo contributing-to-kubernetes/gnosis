@@ -23,9 +23,9 @@ import (
 	"k8s.io/component-base/version/verflag"
 	"k8s.io/klog"
 
-	"github.com/contributing-to-kubernetes/cool-kubernetes/contributing-to-kubernetes/kk-pr-85968/example-cobra/cmd/app/options"
-	"github.com/contributing-to-kubernetes/cool-kubernetes/contributing-to-kubernetes/kk-pr-85968/example-cobra/pkg/master"
-	utilflag "github.com/contributing-to-kubernetes/cool-kubernetes/contributing-to-kubernetes/kk-pr-85968/example-cobra/pkg/util/flag"
+	"github.com/contributing-to-kubernetes/gnosis/stories/kk-pr-85968/example-cobra/cmd/app/options"
+	"github.com/contributing-to-kubernetes/gnosis/stories/kk-pr-85968/example-cobra/pkg/master"
+	utilflag "github.com/contributing-to-kubernetes/gnosis/stories/kk-pr-85968/example-cobra/pkg/util/flag"
 )
 
 // NewAPIServerCommand creates a *cobra.Command object with default parameters

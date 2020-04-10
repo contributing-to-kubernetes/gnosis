@@ -5,7 +5,7 @@ import (
 
 	"k8s.io/klog"
 
-	"github.com/contributing-to-kubernetes/cool-kubernetes/contributing-to-kubernetes/e2e-tests/example-e2e-test/framework"
+	"github.com/contributing-to-kubernetes/gnosis/stories/e2e-tests/example-e2e-test/framework"
 )
 
 var _ = SIGDescribe("Deployment", func() {
