@@ -11,7 +11,7 @@ import (
 	"k8s.io/utils/integer"
 	utilnet "k8s.io/utils/net"
 
-	kubeoptions "github.com/contributing-to-kubernetes/cool-kubernetes/contributing-to-kubernetes/kk-pr-85968/example-cobra/pkg/kubeapiserver/options"
+	kubeoptions "github.com/contributing-to-kubernetes/gnosis/stories/kk-pr-85968/example-cobra/pkg/kubeapiserver/options"
 )
 
 // ServiceIPRange checks if the serviceClusterIPRange flag is nil, raising a warning if so and

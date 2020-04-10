@@ -3,51 +3,51 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: cool-kubernetes
+  name: cool-kube
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: cool-kubernetes
+  name: cool-kube
   namespace: default
 rules:
 - apiGroups: ["apps"]
   resources: ["deployments"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
-# Bind "cool-kubernetes" Role to "cool-kubernetes" ServiceAccount.
+# Bind "cool-kube" Role to "cool-kube" ServiceAccount.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: cool-kubernetes
+  name: cool-kube
   namespace: default # This only grants permissions within the "default" namespace.
 subjects:
 - kind: ServiceAccount
-  name: cool-kubernetes 
+  name: cool-kube 
   apiGroup: ""
 roleRef:
   kind: Role #this must be Role or ClusterRole
-  name: cool-kubernetes # this must match the name of the Role or ClusterRole you wish to bind to.
+  name: cool-kube # this must match the name of the Role or ClusterRole you wish to bind to.
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cool-kubernetes
+  name: cool-kube
   labels:
-    app: cool-kubernetes
+    app: cool-kube
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cool-kubernetes
+      app: cool-kube
   template:
     metadata:
       labels:
-        app: cool-kubernetes
+        app: cool-kube
     spec:
-      serviceAccount: cool-kubernetes
+      serviceAccount: cool-kube
       containers:
-      - name: cool-kubernetes
-        image: alejandrox1/cool-kubernetes:v1
+      - name: cool-kube
+        image: alejandrox1/cool-kube:v1
         imagePullPolicy: Always

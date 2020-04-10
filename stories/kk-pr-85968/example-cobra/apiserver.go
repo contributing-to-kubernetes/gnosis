@@ -8,7 +8,7 @@ package main
 import (
 	"os"
 
-	"github.com/contributing-to-kubernetes/cool-kubernetes/contributing-to-kubernetes/kk-pr-85968/example-cobra/cmd/app"
+	"github.com/contributing-to-kubernetes/gnosis/stories/kk-pr-85968/example-cobra/cmd/app"
 )
 
 func main() {

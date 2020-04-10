@@ -105,10 +105,10 @@ To run this (make sure you change the `push` target inside of the
 $ make && kubectl apply -f app.yaml
 ```
 
-This will create a deployment called `cool-kubernetes`.
+This will create a deployment called `cool-kube`.
 To get its logs, try:
 ```
-$ kubectl logs deploy/cool-kubernetes -f
+$ kubectl logs deploy/cool-kube -f
 ```
 
 
