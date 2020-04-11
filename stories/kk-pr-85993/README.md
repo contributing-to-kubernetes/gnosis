@@ -18,6 +18,8 @@ Here are some things that `kubenet` will do:
 - Assign an `MTU` to the `cbr0`
   - This `MTU` matches the smallest `MTU` of an `enabled normal interface` on the `host`
 
+If this doesn't make a lot of sense to you check out
+[Network: Intro to container networking](./networking) before continuing.
 More information can be located within the [k8s.io docs](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/). This is also the source in which this overview was derived.
 
 ## Old Logic Breakdown
