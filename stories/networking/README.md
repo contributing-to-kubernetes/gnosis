@@ -8,7 +8,7 @@ namespaces.
 For example, one way that containers are made to feel like they are running in
 their own machine is because they create their own networking namespace.
 
-Probably, yo have then heard how network namespaces are leveraged by Docker or
+Probably, you have then heard how network namespaces are leveraged by Docker or
 when running containers in Kubernetes or something of the sort.
 
 Taking the example of Kubernetes, you may have heard that pod-to-pod
@@ -21,10 +21,10 @@ look at these resources behforehand
 * [An illustrated guide to Kubernetes Networking Part 1](https://itnext.io/an-illustrated-guide-to-kubernetes-networking-part-1-d1ede3322727)
 * [Understanding kubernetes networking: pods](https://medium.com/google-cloud/understanding-kubernetes-networking-pods-7117dd28727)
 
-This sort of explanation is a greta one and the one you may be able to live
+This sort of explanation is a great one and the one you may be able to live
 with except if you are interested in becoming a contributor to SIG networking
 and actually have to write code.
-Here,we want to actualy go through the steps and motions of setting up a
+Here, we want to actualy go through the steps and motions of setting up a
 container network.
 
 With that, let's get started!
@@ -305,12 +305,12 @@ NOW WE WILL START TALKING ABOUT BRIDGES AND VETHS!!! :grinning:
 
 **Creating VETH pairs**
 
-Here is where all that talk will finall begin to happen.
+Here is where all that talk will finally begin to happen.
 So overall idea, we want to connect our network namespace with the actual
 physical device in our host so that processes living inside of our network
 namespace can communicate with the rest of the world.
 
-The plan is to begin by creating avirtual ethernet device pair because as the
+The plan is to begin by creating a virtual ethernet device pair because as the
 man pages say
 
 
