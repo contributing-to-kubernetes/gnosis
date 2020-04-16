@@ -126,7 +126,7 @@ In my case this was `https://127.0.0.1:46033`.
 
 ```
 $GOPATH/src/k8s.io/kubernetes/_output/bin/ginkgo $GOPATH/src/k8s.io/kubernetes/_output/bin/e2e.test -- \
-  --kubeconfig=$HOME/.kube/config --host="CONTROL_PLANE_URL" --provider=skeleton \
+  --kubeconfig=$HOME/.kube/config --host="$CONTROL_PLANE_URL" --provider=skeleton \
   --ginkgo.focus="Downward API volume should provide podname only"
 ```
 
