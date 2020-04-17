@@ -133,8 +133,7 @@ $GOPATH/src/k8s.io/kubernetes/_output/bin/ginkgo $GOPATH/src/k8s.io/kubernetes/_
 The magic here is that the e2e.test binary is a precompiled version of
 Kubernetes tests.
 Ginkgo uses it to essentially run `go test` behind the scenes.
-All the flags we used mingle with our Kubernetes e2e test binary to run some Go
-code.
+Flags --kubeconfig --host --provider are args of our go test code, which is "on Downward API volume should provide podname only"
 For example, the test we ran can be (currently) found here:
 https://github.com/kubernetes/kubernetes/blob/master/test/e2e/common/downward_api.go.
 
@@ -180,3 +179,4 @@ To run it, then try
 ```
 ginkgo example-e2e-test.test -- --test-flag cool-framework --ns ci
 ```
+test-flag and ns passed to example-e2e-test go code
