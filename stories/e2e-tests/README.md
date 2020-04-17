@@ -111,6 +111,8 @@ and do
 ```
 kind create cluster --image kindest/node:latest --config test-run.yaml --wait 5m
 ```
+**Note** if you get stuck at creating control-plane; check your image and rebuild it or run with default image.
+
 
 ## Running an E2E test
 
@@ -133,8 +135,8 @@ $GOPATH/src/k8s.io/kubernetes/_output/bin/ginkgo $GOPATH/src/k8s.io/kubernetes/_
 The magic here is that the e2e.test binary is a precompiled version of
 Kubernetes tests.
 Ginkgo uses it to essentially run `go test` behind the scenes.
-Flags --kubeconfig --host --provider are args of our go test code, which is "on Downward API volume should provide podname only"
-For example, the test we ran can be (currently) found here:
+
+Flags --kubeconfig --host --provider are args of our go test code, which is "Downward API volume should provide podname only" the test we ran can be (currently) found here:
 https://github.com/kubernetes/kubernetes/blob/master/test/e2e/common/downward_api.go.
 
 
@@ -179,4 +181,4 @@ To run it, then try
 ```
 ginkgo example-e2e-test.test -- --test-flag cool-framework --ns ci
 ```
-test-flag and ns passed to example-e2e-test go code
+test-flag and ns will be passed to example-e2e-test go code.
