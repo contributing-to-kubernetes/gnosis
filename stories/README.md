@@ -22,6 +22,7 @@ more effective contributors, for both experienced and inexperienced contributors
   * [Network: Intro to container networking](./networking)
   * [Network: Kubenet fetches gateway from CNI result instead of calculating gateway from pod cidr](./kk-pr-85993)
   * [Testing: Understanding E2E Tests](./e2e-tests)
+  * [Testing: Running Node E2E Tests](./e2e-node-tests/)
 
 ## How can I make a PR?
 - Create an issue, if there isn't already one. Following the guidelines of this template to make an issue:
