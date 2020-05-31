@@ -1,0 +1,62 @@
+---
+# ServiceAccount for our app.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pod-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-manager
+  namespace: default
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - "pods"
+  verbs:
+  - "get"
+  - "list"
+  - "watch"
+  - "create"
+  - "update"
+  - "patch"
+  - "delete"
+---
+# Bind "pod-manager" Role to "pod-manager" ServiceAccount.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-manager
+  namespace: default # This only grants permissions within the "default" namespace.
+subjects:
+- kind: ServiceAccount
+  name: pod-manager 
+  apiGroup: ""
+roleRef:
+  kind: Role #this must be Role or ClusterRole
+  name: pod-manager # this must match the name of the Role or ClusterRole you wish to bind to.
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-manager
+  labels:
+    app: pod-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-manager
+  template:
+    metadata:
+      labels:
+        app: pod-manager
+    spec:
+      serviceAccount: pod-manager
+      containers:
+      - name: pod-manager
+        image: alejandrox1/informer:v1
+        imagePullPolicy: Always
