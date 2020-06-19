@@ -61,7 +61,8 @@ At this point, you probably won't have any network namespaces.
 
 If we explore a little bit:
 ```
-docker run --rm -it -name ubuntu ubuntu:19.04 bash
+#run a container in another shell
+docker run --rm -it --name ubuntu ubuntu:19.04 bash
 ```
 
 A simple `ip netns list` will not show you anything.
@@ -132,6 +133,7 @@ Also, if we wanted to have the container's network namespace show through the
 
 ```
 sudo ln -s /proc/23773/ns/net /var/run/netns/ubuntu
+# no such directory error: sudo mkdir /var/run/netns
 ```
 
 We will now see the container's namespace!
@@ -291,7 +293,7 @@ $ sudo ip netns exec cool ping 8.8.8.8
 ping: connect: Network is unreachable
 ```
 
-You might have guessed that I'm proposed to ping the internete because I knew
+You might have guessed that I'm proposed to ping the internet because I knew
 it wouldn't work and it will make for a cool story to fix it and you will be
 correct!
 Didn't think that setting up something container-is would be that easy, did
@@ -328,7 +330,7 @@ sudo ip link add veth0 type veth peer name br-veth0
 Make sure to run a quick `ip link show` to see your new devices.
 
 We will keep the `br-veth0` device for the bridge we will build and will move
-`veth1` to our `cool` namespace.
+`veth0` to our `cool` namespace.
 ```
 sudo ip link set veth0 netns cool
 ```
@@ -537,7 +539,7 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 The hypothesis right now is that even though we gave our namespace a way to
 reach out into the world, there is no way for responses to be able to come back
 to the 192.168.1.0/24 subnet because our routing table tells us that
-thesepackets must have 192.168.1.10 as its source.
+these packets must have 192.168.1.10 as its source.
 
 We can test our hypothesis by using the utility traceroute.
 ```
@@ -559,7 +561,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 ```
 
 Then we have to modify some iptables :smile:
-We will allow packets from the internets to reach our 192.168.1.0/24 subnet by
+We will allow packets from the internet to reach our 192.168.1.0/24 subnet by
 adding an iptables rule in the `POSTROUTING` chain of the `nat` table
 
 ```
@@ -568,8 +570,8 @@ sudo iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
 
 And now to explicitly enable routing to our bridge interface
 ```
-sudo iptables -A FORWARD -i $BR -j ACCEPT
-sudo iptables -A FORWARD -o $BR -j ACCEPT
+sudo iptables -A FORWARD -i br0 -j ACCEPT
+sudo iptables -A FORWARD -o br0 -j ACCEPT
 ```
 
 And finally time for another ping to 8.8.8.8.
@@ -610,7 +612,7 @@ sudo ip link add $PVETH type veth peer name $VETH
 sudo ip link set $VETH netns $NS
 
 sudo ip link add name $BR type bridge
-sudo ip link set br0 up
+sudo ip link set $BR up
 
 sudo ip netns exec $NS ip addr add $VETH_ADDR dev $VETH
 sudo ip netns exec $NS ip link set $VETH up
@@ -626,7 +628,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 sudo iptables -P FORWARD DROP
 sudo iptables -F FORWARD
 sudo iptables -t nat -F
-sudo iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -s $BR_ADDR -j MASQUERADE
 sudo iptables -A FORWARD -i $BR -j ACCEPT
 sudo iptables -A FORWARD -o $BR -j ACCEPT
 ```
