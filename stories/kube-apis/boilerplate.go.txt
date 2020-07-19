@@ -1,0 +1,6 @@
+/*
+  This is required for deepcopy-gen to work.
+
+This oilerplate will make a lot more sense in the context of Kubernetes, where
+all the source code must have a copyright message at the top.
+*/
